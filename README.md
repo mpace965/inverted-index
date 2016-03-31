@@ -7,7 +7,7 @@ The resulting inverted index is a hash table of words to a list of pairs. Each p
   `(<0 indexed line number> . <0 indexed position on that line>)`
 
 ##Caveats
-* Currently, punctuation is included as a whole word. The implementation could be extended to ignore punctuation, or furthermore, to include all substrings of each word in the inverted index as well.
+Currently, punctuation is included as a whole word. The implementation could be extended to ignore punctuation, or furthermore, to include all substrings of each word in the inverted index as well.
 
 ##Recommended Datasets
 I used [the works of Shakespeare](http://www.gutenberg.org/cache/epub/100/pg100.txt) to test the implementation.
