@@ -8,14 +8,15 @@
 (define (string->inverted-index text)
   (list->inverted-index (split-newlines text)))
 
-(define (list->inverted-index list [h (make-immutable-hash)])
+(define (list->inverted-index list)
   (define (iterate-lines hash line-number lines)
     (let* ([line (first lines)]
            [split (string-split line)])
       (cond
         [(null? (rest lines)) (foldl ((curry add-to-hash) line line-number) hash split)]
         [else (iterate-lines (foldl ((curry add-to-hash) line line-number) hash split) (+ line-number 1) (rest lines))])))
-  (iterate-lines h 0 list))
+  (let ([h (make-immutable-hash)])
+    (iterate-lines h 0 list)))
 
 (define (add-to-hash line line-number s h)
   (let* ([pair (hash-ref h s [(lambda () empty)])]
